@@ -19,7 +19,7 @@ UGrabber::UGrabber()
 void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	FString ObjectName = GetOwner()->GetName();
 	UE_LOG(LogTemp, Warning, TEXT("Grabber initialized for %s"), *ObjectName);
 	
@@ -30,7 +30,9 @@ void UGrabber::BeginPlay()
 void UGrabber::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
 	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
+	
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(playerLocation, playerRotation);
+	UE_LOG(LogTemp, Warning, TEXT("Player location: %s rotation: %s"), *playerLocation.ToString(), *playerRotation.ToString());
 
-	// ...
 }
 
